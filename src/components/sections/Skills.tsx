@@ -15,6 +15,11 @@ import {
   SiMongodb,
   SiGit,
   SiGithub,
+  SiLinux,
+  SiDocker,
+  SiPostman,
+  SiVercel,
+  SiFigma,
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 import { Database } from "lucide-react";
@@ -42,6 +47,11 @@ const iconMap: Record<SkillIconKey, IconComponent> = {
   git: SiGit,
   github: SiGithub,
   vscode: VscCode,
+  linux: SiLinux,
+  docker: SiDocker,
+  postman: SiPostman,
+  vercel: SiVercel,
+  figma: SiFigma,
 };
 
 function SkillItem({ skill }: { skill: Skill }) {

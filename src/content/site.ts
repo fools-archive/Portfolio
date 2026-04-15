@@ -45,7 +45,12 @@ export type SkillIconKey =
   | "sql"
   | "git"
   | "github"
-  | "vscode";
+  | "vscode"
+  | "linux"
+  | "docker"
+  | "postman"
+  | "vercel"
+  | "figma";
 
 export type Skill = { name: string; iconKey: SkillIconKey };
 
@@ -268,6 +273,11 @@ export const site = {
           { name: "Git", iconKey: "git" },
           { name: "GitHub", iconKey: "github" },
           { name: "VS Code", iconKey: "vscode" },
+          { name: "Linux", iconKey: "linux" },
+          { name: "Docker", iconKey: "docker" },
+          { name: "Postman", iconKey: "postman" },
+          { name: "Vercel", iconKey: "vercel" },
+          { name: "Figma", iconKey: "figma" },
         ],
       },
     ] satisfies SkillCategory[],
@@ -299,7 +309,8 @@ export const site = {
   stats: {
     eyebrow: "By the numbers",
     items: [
-      { value: "5+", label: "Projects Built" },
+      { value: "7+", label: "Projects Built" },
+      { value: "3+", label: "Years Coding" },
       { value: "1+", label: "Year Building Systems" },
       { value: "3+", label: "Domains Explored" },
       { value: "100%", label: "Self-driven Learning" },
