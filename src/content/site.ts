@@ -30,27 +30,21 @@ export type Project = {
 
 export type Stat = { value: string; label: string };
 
-export type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-};
-
 export type FAQItem = { q: string; a: string };
 
 export type SocialLink = { label: string; href: string };
 
 export const site = {
   meta: {
-    title: "Harsh Sharma — AI-focused Full Stack Developer",
+    title: "Harsh Kumar — AI-focused Full Stack Developer",
     description:
-      "Full stack developer focused on LLMs, agentic systems, and the unsexy plumbing in between.",
+      "Building AI-driven systems that solve real problems. Full stack developer based in India focused on intelligent, production-ready applications.",
     url: "https://example.com",
   },
 
   brand: {
-    mark: "HS.",
-    name: "Harsh Sharma",
+    mark: "HK.",
+    name: "Harsh Kumar",
   },
 
   nav: [
@@ -65,36 +59,39 @@ export const site = {
     eyebrow: "AI-focused Full Stack Developer",
     headlinePrefix: "Building ",
     headlineAccent: "AI-native",
-    headlineSuffix: " products that actually ship.",
-    sub: "Full stack developer focused on LLMs, agentic systems, and the unsexy plumbing in between. Available for freelance & long-term work.",
+    headlineSuffix: " products that actually solve real-world problems.",
+    sub: "Building AI-driven systems that solve real problems. Based in India, working on projects that combine real-time systems, AI models, and clean user experiences.",
     primaryCta: { label: "See Work", href: "#work" },
-    secondaryCta: { label: "Book a Call", href: "#contact" },
+    secondaryCta: { label: "Get in Touch", href: "#contact" },
     scrollLabel: "Scroll",
   },
 
   marquee: [
     "Next.js",
+    "React",
     "TypeScript",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Tailwind",
+    "Framer Motion",
+    "Socket.IO",
     "Python",
     "OpenAI",
-    "Anthropic",
+    "REST APIs",
+    "Git",
     "Vercel",
-    "Supabase",
-    "PostgreSQL",
-    "Pinecone",
-    "LangChain",
-    "tRPC",
-    "Tailwind",
   ],
 
   about: {
     eyebrow: "About",
-    headline: "I build thoughtful software with a heavy AI lean.",
+    headline: "I build intelligent systems, not just applications.",
     body: [
-      "I'm a full stack engineer who spends most days wiring LLMs to real product surfaces — chat, copilots, retrieval, and the quiet automations that make teams 10x faster. I care about the details most people skip: prompt evaluation, cost per request, graceful failure, and UX that respects the user's time.",
-      "Previously I shipped internal tools at fast-growing startups and consulted on AI integrations for teams from 3 to 300. Based in India, working worldwide.",
+      "I'm an AI-focused full stack developer building systems that go beyond simple CRUD apps. I focus on integrating intelligence into software — creating tools that can think, adapt, and automate real workflows.",
+      "My work sits at the intersection of backend systems, frontend experience, and AI integration. I enjoy turning complex ideas into usable, production-ready applications.",
+      "Currently, I'm focused on building projects that combine real-time systems, AI models, and clean user experiences.",
     ],
-    signature: "— HS",
+    signature: "— HK",
   },
 
   process: {
@@ -105,19 +102,19 @@ export const site = {
         number: "01",
         title: "Discovery & Scoping",
         description:
-          "We start with a 60-minute deep-dive. I map your goal to a shippable slice, flag risks early, and send back a tight proposal with milestones and a fixed price.",
+          "We start with a deep-dive call. I map your goal to a shippable slice, flag risks early, and send back a tight proposal with milestones.",
       },
       {
         number: "02",
         title: "Build & Iterate",
         description:
-          "I work in weekly sprints with live Linear, daily Looms, and a staging URL from day one. You always know what I'm doing and what's next.",
+          "I work in weekly sprints with a live task board and a staging URL from day one. You always know what I'm doing and what's next.",
       },
       {
         number: "03",
         title: "Ship & Maintain",
         description:
-          "I don't disappear after launch. You get a handoff doc, a monitoring dashboard, and an optional retainer for ongoing work or on-call.",
+          "I don't disappear after launch. You get a handoff doc, a monitoring setup, and an optional retainer for ongoing work.",
       },
     ] satisfies ProcessStep[],
   },
@@ -144,7 +141,7 @@ export const site = {
         id: "fullstack",
         title: "Full Stack Web Apps",
         description:
-          "Typed end-to-end — Next.js, tRPC, Postgres, Vercel. Fast, boring, production-ready. Exactly what you want.",
+          "Typed end-to-end — Next.js, Node, MongoDB, Vercel. Fast, boring, production-ready. Exactly what you want.",
         iconKey: "code",
       },
       {
@@ -163,40 +160,40 @@ export const site = {
     seeAll: "All Projects →",
     projects: [
       {
-        id: "p1",
-        title: "Lumen",
+        id: "ai-interviewer",
+        title: "AI Interviewer",
         blurb:
-          "Internal knowledge copilot for a 120-person ops team. RAG over 14k Notion pages with cited answers.",
-        tech: ["Next.js", "Pinecone", "OpenAI", "tRPC"],
+          "AI-driven interview system that dynamically generates and adapts questions based on candidate resume and responses.",
+        tech: ["Next.js", "Node.js", "OpenAI API"],
+        year: "2026",
+        tag: "AI / Full Stack",
+      },
+      {
+        id: "malware-detection",
+        title: "Malware Detection using ML",
+        blurb:
+          "Machine learning model that analyzes files and predicts malicious behavior to enhance system security.",
+        tech: ["Python", "Scikit-learn", "Pandas"],
         year: "2025",
-        tag: "AI / Internal Tools",
+        tag: "AI / Cybersecurity",
       },
       {
-        id: "p2",
-        title: "Marlow",
+        id: "nids",
+        title: "Network Intrusion Detection System",
         blurb:
-          "Customer-facing AI agent that handles 38% of support tickets end-to-end. Self-healing with human escalation.",
-        tech: ["Anthropic", "Postgres", "Temporal", "Next.js"],
+          "System for monitoring network traffic and identifying suspicious activities or potential cyber attacks in real time.",
+        tech: ["Python", "Networking", "Machine Learning"],
         year: "2025",
-        tag: "Agentic / CX",
+        tag: "Cybersecurity / Systems",
       },
       {
-        id: "p3",
-        title: "Fieldnote",
+        id: "dsa-visualizer",
+        title: "DSA Visualizer",
         blurb:
-          "Voice-to-structured-data mobile app for field researchers. Offline-first, Whisper + custom extraction.",
-        tech: ["React Native", "Whisper", "SQLite", "Supabase"],
+          "Interactive tool that visually demonstrates data structures and algorithms to improve conceptual understanding.",
+        tech: ["React", "JavaScript"],
         year: "2024",
-        tag: "Mobile / AI",
-      },
-      {
-        id: "p4",
-        title: "Plotweave",
-        blurb:
-          "Writing workspace with LLM-powered outlining, continuity checks, and citation-safe drafting.",
-        tech: ["Next.js", "OpenAI", "PlanetScale", "Clerk"],
-        year: "2024",
-        tag: "Creative / SaaS",
+        tag: "Frontend / Education",
       },
     ] satisfies Project[],
   },
@@ -204,36 +201,11 @@ export const site = {
   stats: {
     eyebrow: "By the numbers",
     items: [
-      { value: "4+", label: "Years shipping" },
-      { value: "25+", label: "Projects delivered" },
-      { value: "5", label: "Production AI apps" },
-      { value: "100%", label: "On-time delivery" },
+      { value: "5+", label: "Projects Built" },
+      { value: "1+", label: "Year Building Systems" },
+      { value: "3+", label: "Domains Explored" },
+      { value: "100%", label: "Self-driven Learning" },
     ] satisfies Stat[],
-  },
-
-  testimonials: {
-    eyebrow: "Kind words",
-    headline: "What people say.",
-    items: [
-      {
-        quote:
-          "Shipped our entire AI copilot in six weeks — and the code is cleaner than anything our in-house team has written. Rare combination.",
-        name: "Placeholder Name",
-        role: "CTO, Placeholder Co.",
-      },
-      {
-        quote:
-          "Treats prompts like code and evals like tests. That alone made our rollout boring in the best way.",
-        name: "Placeholder Name",
-        role: "Head of Product, Placeholder Labs",
-      },
-      {
-        quote:
-          "Communicated better than any contractor we've hired. Weekly Looms, clear trade-offs, always ahead of blockers.",
-        name: "Placeholder Name",
-        role: "Founder, Placeholder Inc.",
-      },
-    ] satisfies Testimonial[],
   },
 
   faq: {
@@ -241,28 +213,20 @@ export const site = {
     headline: "Common questions.",
     items: [
       {
-        q: "What kinds of projects do you take on?",
-        a: "AI-heavy product work above all — copilots, RAG, agentic systems, evaluation pipelines. I also do straightforward full-stack builds (Next.js + Postgres) when the work is interesting and the team is good.",
+        q: "What do you specialize in?",
+        a: "I specialize in building AI-integrated full stack applications.",
       },
       {
-        q: "What's your stack?",
-        a: "Next.js, TypeScript, tRPC, Postgres/Supabase, Vercel on the web side. Python for ML-adjacent work. OpenAI, Anthropic, and self-hosted OSS models depending on the use case.",
+        q: "What kind of projects do you build?",
+        a: "Projects that solve real-world problems using intelligent systems and automation.",
       },
       {
-        q: "How do you price?",
-        a: "Fixed-price per milestone after a paid scoping call. Weekly retainers for ongoing work. No hourly. You know the number before I start.",
+        q: "Are you open to collaboration?",
+        a: "Yes, I'm open to working on interesting and impactful ideas.",
       },
       {
-        q: "How long does a typical project take?",
-        a: "Small AI feature: 2–3 weeks. Full copilot or internal tool: 6–10 weeks. Multi-surface agent: 8–16 weeks. I'll give you a concrete timeline after the scoping call.",
-      },
-      {
-        q: "Do you handle evals and post-launch monitoring?",
-        a: "Yes. Every project ships with a baseline eval set, prompt regression checks, and a simple dashboard for cost and quality. Retainer clients get monthly eval reviews.",
-      },
-      {
-        q: "Can I hire you long-term?",
-        a: "Yes — retainers (1–3 days/week) or fractional engineering for a fixed term. I'm not looking for full-time employment right now.",
+        q: "What technologies do you use?",
+        a: "Modern web stack combined with AI tools and APIs — Next.js, Node.js, Python, OpenAI, MongoDB, and more.",
       },
     ] satisfies FAQItem[],
   },
@@ -270,23 +234,25 @@ export const site = {
   cta: {
     eyebrow: "Let's build",
     headlinePrefix: "Got an idea worth ",
-    headlineAccent: "shipping",
+    headlineAccent: "building",
     headlineSuffix: "?",
     sub: "Tell me about it. First reply within 24 hours.",
-    email: "hello@example.com",
-    button: "Start a conversation",
+    email: "kumar.harsh.13102004@gmail.com",
+    button: "Let's Build Something",
   },
 
   socials: [
-    { label: "GitHub", href: "https://github.com/" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/" },
-    { label: "X", href: "https://x.com/" },
-    { label: "Email", href: "mailto:hello@example.com" },
+    { label: "GitHub", href: "https://github.com/fools-archive" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/harsh-kumar-9a203b316",
+    },
+    { label: "Email", href: "mailto:kumar.harsh.13102004@gmail.com" },
   ] satisfies SocialLink[],
 
   footer: {
-    tagline: "Built from scratch — inspired by Portfolite.",
-    credit: "© 2026 Harsh Sharma. All rights reserved.",
+    tagline: "Building intelligent systems, not just applications.",
+    credit: "© 2026 Harsh Kumar. All rights reserved.",
   },
 };
 
