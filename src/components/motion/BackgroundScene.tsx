@@ -1,8 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
-import { Suspense, useRef, useEffect, useMemo, useState } from "react";
+import { useRef, useEffect, useMemo, useState } from "react";
 import * as THREE from "three";
 
 function useScrollProgress() {
@@ -23,108 +22,127 @@ function useScrollProgress() {
   return ref;
 }
 
-function Knot({ scroll }: { scroll: React.MutableRefObject<number> }) {
-  const group = useRef<THREE.Group>(null);
-  const inner = useRef<THREE.Mesh>(null);
-  const wire = useRef<THREE.Mesh>(null);
-  const glow = useRef<THREE.Mesh>(null);
+const vertexShader = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = vec4(position.xy, 0.0, 1.0);
+  }
+`;
 
-  const colorA = useMemo(() => new THREE.Color("#B8C08A"), []);
-  const colorB = useMemo(() => new THREE.Color("#D4DCA6"), []);
-  const tmp = useMemo(() => new THREE.Color(), []);
+const fragmentShader = /* glsl */ `
+  precision highp float;
+  varying vec2 vUv;
+  uniform float uTime;
+  uniform float uScroll;
+  uniform vec2  uRes;
 
-  useFrame((state, delta) => {
-    const t = state.clock.elapsedTime;
-    const s = scroll.current;
-
-    if (group.current) {
-      group.current.rotation.y += delta * 0.08;
-      group.current.rotation.x = Math.sin(t * 0.2) * 0.15 + s * Math.PI * 0.6;
-      group.current.position.y = -s * 2.2 + Math.sin(t * 0.4) * 0.08;
-      group.current.position.z = -s * 1.4;
-      const scale = 1 + s * 0.6;
-      group.current.scale.setScalar(scale);
+  // --- hash / noise ---
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+  float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    float a = hash(i);
+    float b = hash(i + vec2(1.0, 0.0));
+    float c = hash(i + vec2(0.0, 1.0));
+    float d = hash(i + vec2(1.0, 1.0));
+    return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+  }
+  float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.5;
+    for (int i = 0; i < 6; i++) {
+      v += a * noise(p);
+      p *= 2.02;
+      a *= 0.5;
     }
+    return v;
+  }
 
-    if (inner.current) {
-      inner.current.rotation.z += delta * 0.15;
-    }
-    if (wire.current) {
-      wire.current.rotation.z -= delta * 0.25;
-      wire.current.rotation.x += delta * 0.05;
-    }
-    if (glow.current) {
-      glow.current.rotation.y -= delta * 0.3;
-      const mat = glow.current.material as THREE.MeshBasicMaterial;
-      tmp.copy(colorA).lerp(colorB, (Math.sin(t * 0.3) + 1) / 2);
-      mat.color.copy(tmp);
-    }
-  });
+  void main() {
+    // aspect-correct centered uv
+    vec2 uv = vUv;
+    vec2 p = (uv - 0.5);
+    p.x *= uRes.x / uRes.y;
+    p *= 1.6;
 
-  return (
-    <group ref={group}>
-      <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.6}>
-        <mesh ref={inner}>
-          <icosahedronGeometry args={[1.15, 1]} />
-          <meshStandardMaterial
-            color="#1F1A15"
-            metalness={0.35}
-            roughness={0.55}
-            flatShading
-          />
-        </mesh>
+    float t = uTime * 0.06;
+    float s = uScroll;
 
-        <mesh ref={wire} scale={1.35}>
-          <icosahedronGeometry args={[1.15, 2]} />
-          <meshBasicMaterial color="#B8C08A" wireframe transparent opacity={0.35} />
-        </mesh>
+    // scroll warps the field: shifts position & rotates slightly
+    float ang = s * 0.8;
+    float ca = cos(ang), sa = sin(ang);
+    p = mat2(ca, -sa, sa, ca) * p;
+    p += vec2(s * 0.4, -s * 0.6);
 
-        <mesh ref={glow} scale={1.9}>
-          <torusKnotGeometry args={[1.1, 0.04, 200, 16, 2, 3]} />
-          <meshBasicMaterial color="#B8C08A" transparent opacity={0.35} />
-        </mesh>
-      </Float>
-    </group>
+    // Domain warping for silky smoke
+    vec2 q = vec2(
+      fbm(p + vec2(0.0, t)),
+      fbm(p + vec2(5.2, 1.3) + t * 0.8)
+    );
+    vec2 r = vec2(
+      fbm(p + 3.5 * q + vec2(1.7 + t * 0.15, 9.2)),
+      fbm(p + 3.5 * q + vec2(8.3, 2.8 + t * 0.126))
+    );
+    float f = fbm(p + 3.0 * r);
+
+    // Shape into flowing wisps
+    float w = smoothstep(0.28, 0.82, f);
+    w = pow(w, 1.15);
+
+    // Base dark + wisp greyscale
+    vec3 base = vec3(0.032, 0.030, 0.028);
+    vec3 wisp = mix(vec3(0.62, 0.62, 0.60), vec3(0.92, 0.92, 0.90), w);
+    vec3 col = mix(base, wisp, w);
+
+    // Subtle moss-green tint in the brightest highlights to tie with accent
+    float hi = smoothstep(0.75, 1.0, f);
+    col = mix(col, vec3(0.72, 0.75, 0.54), hi * 0.18);
+
+    // Gentle vignette
+    float vig = smoothstep(1.1, 0.35, length((uv - 0.5) * vec2(uRes.x / uRes.y, 1.0)));
+    col *= mix(0.55, 1.0, vig);
+
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+function Smoke({ scroll }: { scroll: React.MutableRefObject<number> }) {
+  const matRef = useRef<THREE.ShaderMaterial>(null);
+  const scrollLerp = useRef(0);
+
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uScroll: { value: 0 },
+      uRes: { value: new THREE.Vector2(1, 1) },
+    }),
+    [],
   );
-}
-
-function Particles({ count = 140 }: { count?: number }) {
-  const points = useRef<THREE.Points>(null);
-
-  const positions = useMemo(() => {
-    const arr = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 14;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 6 - 2;
-    }
-    return arr;
-  }, [count]);
 
   useFrame((state, delta) => {
-    if (points.current) {
-      points.current.rotation.y += delta * 0.02;
-      points.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.05;
-    }
+    if (!matRef.current) return;
+    scrollLerp.current += (scroll.current - scrollLerp.current) * Math.min(1, delta * 4);
+    matRef.current.uniforms.uTime.value = state.clock.elapsedTime;
+    matRef.current.uniforms.uScroll.value = scrollLerp.current;
+    matRef.current.uniforms.uRes.value.set(state.size.width, state.size.height);
   });
 
   return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-          count={count}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        color="#F2EDE4"
-        size={0.02}
-        sizeAttenuation
-        transparent
-        opacity={0.55}
+    <mesh frustumCulled={false}>
+      <planeGeometry args={[2, 2]} />
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={uniforms}
+        depthWrite={false}
+        depthTest={false}
       />
-    </points>
+    </mesh>
   );
 }
 
@@ -137,25 +155,18 @@ export function BackgroundScene() {
     <div
       aria-hidden
       className="pointer-events-none fixed inset-0 z-0"
-      style={{
-        background:
-          "radial-gradient(1200px 700px at 70% 20%, rgba(184,192,138,0.12), transparent 60%), radial-gradient(900px 700px at 10% 90%, rgba(212,220,166,0.08), transparent 60%), #0A0908",
-      }}
+      style={{ backgroundColor: "#07070A" }}
     >
-      {mounted && <Canvas
-        dpr={[1, 1.75]}
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <Suspense fallback={null}>
-          <ambientLight intensity={0.35} />
-          <directionalLight position={[4, 5, 5]} intensity={1.1} color="#F2EDE4" />
-          <directionalLight position={[-5, -3, -2]} intensity={0.5} color="#B8C08A" />
-          <Knot scroll={scroll} />
-          <Particles />
-          <fog attach="fog" args={["#0A0908", 6, 14]} />
-        </Suspense>
-      </Canvas>}
+      {mounted && (
+        <Canvas
+          dpr={[1, 1.75]}
+          gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+          orthographic
+          camera={{ zoom: 1, position: [0, 0, 1] }}
+        >
+          <Smoke scroll={scroll} />
+        </Canvas>
+      )}
     </div>
   );
 }
