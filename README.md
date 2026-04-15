@@ -15,7 +15,7 @@ Live URL: _coming soon_
 | Styling      | Tailwind CSS v4 (`@theme` tokens in `globals.css`)        |
 | Motion       | Framer Motion 11, Lenis (smooth scroll)                   |
 | 3D / Shader  | three.js, @react-three/fiber, @react-three/drei           |
-| Icons        | lucide-react                                              |
+| Icons        | lucide-react, react-icons (Simple Icons)                  |
 | Fonts        | Inter (sans), Instrument Serif (display) via `next/font`  |
 
 ---
@@ -47,6 +47,9 @@ http://localhost:3000
 ## Project structure
 
 ```
+public/
+└── portrait.png            # About-section portrait image
+
 src/
 ├── app/
 │   ├── globals.css         # Design tokens (colors, radii, easing) + utilities
@@ -56,8 +59,8 @@ src/
 │   ├── layout/             # Nav, Footer
 │   ├── motion/             # Reveal, SplitText, Parallax, SmoothScroll,
 │   │                       # Cursor, BackgroundScene (GLSL smoke shader)
-│   ├── sections/           # Hero, Marquee, About, Process, Services,
-│   │                       # Work, Stats, Testimonials, FAQ, CTA
+│   ├── sections/           # Hero, Marquee, About, Education, Skills,
+│   │                       # Process, Services, Work, Stats, FAQ, CTA
 │   └── ui/                 # Button, Eyebrow, SectionHeading, Accordion
 ├── content/
 │   └── site.ts             # All human-editable copy lives here
@@ -69,7 +72,7 @@ src/
 
 ## Editing content
 
-All copy — headlines, services, projects, FAQ, testimonials, socials, etc. — lives in a single typed file:
+All copy — headlines, services, projects, FAQ, socials, skills, education, etc. — lives in a single typed file:
 
 ```ts
 // src/content/site.ts
