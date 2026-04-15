@@ -30,6 +30,12 @@ export type Project = {
 
 export type Stat = { value: string; label: string };
 
+export type EducationItem = {
+  degree: string;
+  institution: string;
+  year: string;
+};
+
 export type FAQItem = { q: string; a: string };
 
 export type SocialLink = { label: string; href: string };
@@ -198,6 +204,29 @@ export const site = {
     ] satisfies Project[],
   },
 
+  education: {
+    eyebrow: "Education",
+    headline: "Academic foundation.",
+    items: [
+      {
+        degree:
+          "B.Tech — Computer Science & Engineering (Cyber Security)",
+        institution: "Dr. A.P.J. Abdul Kalam Technical University (AKTU)",
+        year: "2023 – 2027",
+      },
+      {
+        degree: "Intermediate (ISC Board)",
+        institution: "Mother Teresa Mission Higher Secondary School, Kanpur",
+        year: "2021 – 2022",
+      },
+      {
+        degree: "High School (ICSE Board)",
+        institution: "Mother Teresa Mission Higher Secondary School, Kanpur",
+        year: "2019 – 2020",
+      },
+    ] satisfies EducationItem[],
+  },
+
   stats: {
     eyebrow: "By the numbers",
     items: [
@@ -247,6 +276,8 @@ export const site = {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/harsh-kumar-9a203b316",
     },
+    { label: "X", href: "https://x.com/paradoxofpast" },
+    { label: "LeetCode", href: "https://leetcode.com/u/Debug_Sensei/" },
     { label: "Email", href: "mailto:kumar.harsh.13102004@gmail.com" },
   ] satisfies SocialLink[],
 

@@ -25,6 +25,11 @@ export function Hero() {
       className="container-x relative flex min-h-[100svh] flex-col justify-between pb-16 pt-[calc(var(--nav-h)+2rem)] md:pt-[calc(var(--nav-h)+3rem)]"
     >
       <motion.div style={{ y, opacity }} className="flex flex-col gap-10">
+        <Reveal variant="fade" delay={0.05}>
+          <p className="font-display italic text-2xl md:text-3xl text-[color:var(--color-accent)]">
+            Hi, I&apos;m {site.brand.name}.
+          </p>
+        </Reveal>
         <Reveal variant="fade" delay={0.1}>
           <Eyebrow>{site.hero.eyebrow}</Eyebrow>
         </Reveal>

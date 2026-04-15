@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
 import { Parallax } from "@/components/motion/Parallax";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -12,7 +13,16 @@ export function About() {
             <Eyebrow>{site.about.eyebrow}</Eyebrow>
           </Reveal>
           <Parallax strength={40} className="mt-10 hidden md:block">
-            <div className="aspect-[3/4] rounded-2xl bg-[color:var(--color-surface-2)] ring-1 ring-[color:var(--color-border)]" />
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+              <Image
+                src="/portrait.png"
+                alt={`Portrait of ${site.brand.name}`}
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
           </Parallax>
         </div>
         <div className="md:col-span-8">
