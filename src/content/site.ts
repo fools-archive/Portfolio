@@ -30,6 +30,27 @@ export type Project = {
 
 export type Stat = { value: string; label: string };
 
+export type SkillIconKey =
+  | "cpp"
+  | "java"
+  | "python"
+  | "javascript"
+  | "react"
+  | "nextjs"
+  | "typescript"
+  | "tailwind"
+  | "nodejs"
+  | "express"
+  | "mongodb"
+  | "sql"
+  | "git"
+  | "github"
+  | "vscode";
+
+export type Skill = { name: string; iconKey: SkillIconKey };
+
+export type SkillCategory = { name: string; items: Skill[] };
+
 export type EducationItem = {
   degree: string;
   institution: string;
@@ -54,10 +75,11 @@ export const site = {
   },
 
   nav: [
-    { label: "Services", href: "#services" },
+    { label: "About", href: "#about" },
+    { label: "Education", href: "#education" },
+    { label: "Skills", href: "#skills" },
     { label: "Work", href: "#work" },
-    { label: "Process", href: "#process" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Services", href: "#services" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavLink[],
 
@@ -202,6 +224,53 @@ export const site = {
         tag: "Frontend / Education",
       },
     ] satisfies Project[],
+  },
+
+  skills: {
+    eyebrow: "Core Stack",
+    headline: "Tools of the trade.",
+    categories: [
+      {
+        name: "Languages",
+        items: [
+          { name: "C++", iconKey: "cpp" },
+          { name: "Java", iconKey: "java" },
+          { name: "Python", iconKey: "python" },
+          { name: "JavaScript", iconKey: "javascript" },
+        ],
+      },
+      {
+        name: "Frontend",
+        items: [
+          { name: "React.js", iconKey: "react" },
+          { name: "Next.js", iconKey: "nextjs" },
+          { name: "TypeScript", iconKey: "typescript" },
+          { name: "Tailwind CSS", iconKey: "tailwind" },
+        ],
+      },
+      {
+        name: "Backend",
+        items: [
+          { name: "Node.js", iconKey: "nodejs" },
+          { name: "Express.js", iconKey: "express" },
+        ],
+      },
+      {
+        name: "Databases",
+        items: [
+          { name: "MongoDB", iconKey: "mongodb" },
+          { name: "SQL", iconKey: "sql" },
+        ],
+      },
+      {
+        name: "Tooling",
+        items: [
+          { name: "Git", iconKey: "git" },
+          { name: "GitHub", iconKey: "github" },
+          { name: "VS Code", iconKey: "vscode" },
+        ],
+      },
+    ] satisfies SkillCategory[],
   },
 
   education: {
