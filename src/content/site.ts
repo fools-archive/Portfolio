@@ -141,7 +141,7 @@ export const site = {
         id: "fullstack",
         title: "Full Stack Web Apps",
         description:
-          "Typed end-to-end — Next.js, Node, MongoDB, Vercel. Fast, boring, production-ready. Exactly what you want.",
+          "Typed end-to-end — Next.js, tRPC, Postgres, Vercel. Fast, boring, production-ready. Exactly what you want.",
         iconKey: "code",
       },
       {

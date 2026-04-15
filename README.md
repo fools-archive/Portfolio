@@ -1,6 +1,6 @@
-# Portfolio — Harsh Sharma
+# Portfolio — Harsh Kumar
 
-A dark, motion-heavy personal portfolio built with **Next.js 16**, **Tailwind v4**, **Framer Motion**, and a custom **three.js** shader background. Inspired by [Portfolite](https://portfolite.framer.website/).
+A dark, motion-heavy personal portfolio built with **Next.js 16**, **Tailwind v4**, **Framer Motion**, and a custom **three.js** shader background.
 
 Live URL: _coming soon_
 
@@ -162,4 +162,4 @@ No environment variables are required — content is fully static.
 
 ## License
 
-MIT © Harsh Sharma
+MIT © Harsh Kumar
