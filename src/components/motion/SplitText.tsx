@@ -67,7 +67,10 @@ export function SplitText({
       {words.map((word, wi) => (
         <span
           key={wi}
-          className={cn("inline-block overflow-hidden whitespace-nowrap", wordClassName)}
+          className={cn(
+            "inline-block overflow-hidden whitespace-nowrap align-baseline pt-[0.18em] -mt-[0.18em] pb-[0.22em] -mb-[0.22em] pr-[0.08em] -mr-[0.08em]",
+            wordClassName,
+          )}
           aria-hidden="true"
         >
           {Array.from(word).map((ch, ci) => (

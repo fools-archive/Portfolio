@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type CursorMode = "default" | "link" | "drag" | "view";
 
@@ -18,9 +18,12 @@ export function Cursor() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const spring = { damping: 24, stiffness: 320, mass: 0.6 };
+  const spring = { damping: 40, stiffness: 1400, mass: 0.18, restDelta: 0.5 };
   const sx = useSpring(x, spring);
   const sy = useSpring(y, spring);
+
+  const visibleRef = useRef(false);
+  const modeRef = useRef<CursorMode>("default");
 
   useEffect(() => {
     const hasHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -33,24 +36,32 @@ export function Cursor() {
     const onMove = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
-      if (!visible) setVisible(true);
-    };
-
-    const onLeave = () => setVisible(false);
-    const onEnter = () => setVisible(true);
-
-    const onOver = (e: MouseEvent) => {
-      const t = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-cursor]");
-      if (t) {
-        const m = (t.dataset.cursor as CursorMode) || "default";
-        setMode(m);
-      } else {
-        setMode("default");
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        setVisible(true);
       }
     };
 
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseover", onOver);
+    const onLeave = () => {
+      visibleRef.current = false;
+      setVisible(false);
+    };
+    const onEnter = () => {
+      visibleRef.current = true;
+      setVisible(true);
+    };
+
+    const onOver = (e: MouseEvent) => {
+      const t = (e.target as HTMLElement | null)?.closest<HTMLElement>("[data-cursor]");
+      const next: CursorMode = t ? ((t.dataset.cursor as CursorMode) || "default") : "default";
+      if (next !== modeRef.current) {
+        modeRef.current = next;
+        setMode(next);
+      }
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
 
@@ -61,7 +72,7 @@ export function Cursor() {
       document.removeEventListener("mouseenter", onEnter);
       document.body.removeAttribute("data-cursor-enabled");
     };
-  }, [visible, x, y]);
+  }, [x, y]);
 
   if (!enabled) return null;
 

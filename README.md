@@ -2,7 +2,7 @@
 
 A dark, motion-heavy personal portfolio built with **Next.js 16**, **Tailwind v4**, **Framer Motion**, and a custom **three.js** shader background.
 
-Live URL: _coming soon_
+Live: **https://hkumar-portfolio-site.vercel.app/**
 
 ---
 
@@ -152,7 +152,7 @@ git reset --hard v1.0 # destructive revert (careful)
 
 ## Deployment
 
-The app is a standard Next.js 16 App Router project and deploys cleanly to Vercel:
+The app is a standard Next.js 16 App Router project and deploys cleanly to Vercel. Live deployment: [hkumar-portfolio-site.vercel.app](https://hkumar-portfolio-site.vercel.app/)
 
 ```bash
 # From the project root, after `npx vercel login`
