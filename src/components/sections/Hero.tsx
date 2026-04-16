@@ -15,14 +15,14 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const y = useTransform(scrollYProgress, [0.25, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0.25, 0.85], [1, 0]);
 
   return (
     <section
       ref={ref}
       id="hero"
-      className="container-x relative flex min-h-[100svh] flex-col justify-between pb-16 pt-[calc(var(--nav-h)+2rem)] md:pt-[calc(var(--nav-h)+3rem)]"
+      className="container-x relative flex min-h-[100svh] flex-col pb-16 pt-[calc(var(--nav-h)+2rem)] md:pt-[calc(var(--nav-h)+3rem)]"
     >
       <motion.div style={{ y, opacity }} className="flex flex-col gap-10">
         <Reveal variant="fade" delay={0.05}>
@@ -77,7 +77,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.3, duration: 0.8 }}
-        className="mt-16 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]"
+        className="mt-auto pt-20 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]"
       >
         <motion.span
           animate={{ y: [0, 6, 0] }}
