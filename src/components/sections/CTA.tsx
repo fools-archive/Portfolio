@@ -36,7 +36,7 @@ export function CTA() {
           </h2>
         </Reveal>
         <Reveal variant="up" delay={0.2}>
-          <p className="max-w-xl text-lg text-[color:var(--color-fg-muted)] md:text-xl">
+          <p className="text-readable max-w-xl text-lg text-[color:var(--color-fg-muted)] md:text-xl">
             {site.cta.sub}
           </p>
         </Reveal>

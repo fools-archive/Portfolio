@@ -70,7 +70,7 @@ export function Hero() {
         </h1>
 
         <Reveal variant="up" delay={0.85} className="max-w-xl">
-          <p className="text-[color:var(--color-fg-muted)] text-lg md:text-xl text-pretty">
+          <p className="text-readable text-[color:var(--color-fg-muted)] text-lg md:text-xl text-pretty">
             {site.hero.sub}
           </p>
         </Reveal>
@@ -91,7 +91,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.3, duration: 0.8 }}
-        className="mt-auto pt-20 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]"
+        className="text-readable mt-auto pt-20 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)]"
       >
         <motion.span
           animate={{ y: [0, 6, 0] }}

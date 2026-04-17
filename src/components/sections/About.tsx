@@ -75,7 +75,7 @@ export function About() {
           <div className="mt-10 flex flex-col gap-6 max-w-[60ch]">
             {site.about.body.map((p, i) => (
               <Reveal key={i} variant="up" delay={0.15 + i * 0.05}>
-                <p className="text-[color:var(--color-fg-muted)] text-lg md:text-xl text-pretty">
+                <p className="text-readable text-[color:var(--color-fg-muted)] text-lg md:text-xl text-pretty">
                   {p}
                 </p>
               </Reveal>

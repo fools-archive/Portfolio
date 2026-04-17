@@ -22,14 +22,14 @@ export function Work() {
               data-cursor="view"
             >
               <div className="grid grid-cols-12 items-baseline gap-4 py-8 md:py-12">
-                <span className="col-span-1 text-xs uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)] md:text-sm">
+                <span className="text-readable col-span-1 text-xs uppercase tracking-[0.24em] text-[color:var(--color-fg-muted)] md:text-sm">
                   0{i + 1}
                 </span>
                 <div className="col-span-11 flex flex-col gap-3 md:col-span-6">
                   <h3 className="font-display text-4xl leading-[0.95] tracking-[-0.01em] transition-colors duration-500 group-hover:text-[color:var(--color-accent)] md:text-6xl">
                     {p.title}
                   </h3>
-                  <p className="max-w-[52ch] text-[color:var(--color-fg-muted)] text-pretty">
+                  <p className="text-readable max-w-[52ch] text-[color:var(--color-fg-muted)] text-pretty">
                     {p.blurb}
                   </p>
                 </div>
@@ -37,13 +37,13 @@ export function Work() {
                   {p.tech.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-[color:var(--color-border-strong)] px-3 py-1 text-xs text-[color:var(--color-fg-soft)]"
+                      className="text-readable rounded-full border border-[color:var(--color-border-strong)] px-3 py-1 text-xs text-[color:var(--color-fg-soft)]"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-                <div className="col-span-4 flex items-center justify-end gap-3 text-sm text-[color:var(--color-fg-muted)] md:col-span-1">
+                <div className="text-readable col-span-4 flex items-center justify-end gap-3 text-sm text-[color:var(--color-fg-muted)] md:col-span-1">
                   <span>{p.year}</span>
                   <ArrowUpRight
                     size={20}
