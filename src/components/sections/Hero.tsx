@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitText } from "@/components/motion/SplitText";
@@ -18,12 +18,24 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0.25, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0.25, 0.85], [1, 0]);
 
+  const [started, setStarted] = useState(false);
+  useEffect(() => {
+    if ((window as unknown as { __introDone?: boolean }).__introDone) {
+      setStarted(true);
+      return;
+    }
+    const onDone = () => setStarted(true);
+    window.addEventListener("intro:done", onDone);
+    return () => window.removeEventListener("intro:done", onDone);
+  }, []);
+
   return (
     <section
       ref={ref}
       id="hero"
       className="container-x relative flex min-h-[100svh] flex-col pb-16 pt-[calc(var(--nav-h)+2rem)] md:pt-[calc(var(--nav-h)+3rem)]"
     >
+      {started && (
       <motion.div style={{ y, opacity }} className="flex flex-col gap-10">
         <Reveal variant="fade" delay={0.05}>
           <p className="font-display italic text-2xl md:text-3xl text-[color:var(--color-accent)]">
@@ -72,7 +84,9 @@ export function Hero() {
           </Button>
         </Reveal>
       </motion.div>
+      )}
 
+      {started && (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -88,6 +102,7 @@ export function Hero() {
         </motion.span>
         {site.hero.scrollLabel}
       </motion.div>
+      )}
     </section>
   );
 }

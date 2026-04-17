@@ -33,7 +33,11 @@ export function Intro() {
       ease: [0.22, 1, 0.36, 1],
     });
 
-    const exitTimer = window.setTimeout(() => setVisible(false), 2100);
+    const exitTimer = window.setTimeout(() => {
+      (window as unknown as { __introDone?: boolean }).__introDone = true;
+      window.dispatchEvent(new Event("intro:done"));
+      setVisible(false);
+    }, 2100);
 
     return () => {
       controls.stop();
@@ -44,6 +48,7 @@ export function Intro() {
   const handleExit = () => {
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
+    (window as unknown as { __introDone?: boolean }).__introDone = true;
     window.dispatchEvent(new Event("intro:done"));
   };
 
