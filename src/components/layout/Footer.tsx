@@ -32,7 +32,7 @@ export function Footer() {
     <footer className="container-x hairline-t relative py-14 md:py-20">
       <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-4">
-          <a href="#top" className="font-display text-5xl md:text-6xl">
+          <a href="#top" className="focus-ring font-display text-5xl md:text-6xl w-fit" data-cursor="link">
             {site.brand.mark}
           </a>
           <p className="max-w-xs text-sm text-[color:var(--color-fg-muted)]">
@@ -48,7 +48,7 @@ export function Footer() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-sm text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)]"
+                className="focus-ring w-fit text-sm text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)]"
                 data-cursor="link"
               >
                 {n.label}
@@ -65,7 +65,7 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-sm text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)]"
+                className="focus-ring inline-flex items-center gap-2.5 text-sm text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)]"
                 data-cursor="link"
               >
                 <SocialIcon label={s.label} />

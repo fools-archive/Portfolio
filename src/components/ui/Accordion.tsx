@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { cn } from "@/lib/cn";
 
 export function AccordionItem({
@@ -15,13 +15,15 @@ export function AccordionItem({
   defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const panelId = useId();
 
   return (
     <div className="border-b border-[color:var(--color-border)] last:border-b-0">
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-6 py-6 text-left md:py-8"
+        aria-controls={panelId}
+        className="focus-ring flex w-full items-center justify-between gap-6 py-6 text-left md:py-8"
         data-cursor="link"
       >
         <span className="font-display text-2xl leading-tight text-[color:var(--color-fg)] md:text-3xl">
@@ -39,6 +41,8 @@ export function AccordionItem({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={panelId}
+            role="region"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

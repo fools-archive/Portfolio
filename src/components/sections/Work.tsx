@@ -18,7 +18,7 @@ export function Work() {
           <Reveal key={p.id} variant="up" delay={i * 0.04} as="li">
             <a
               href={(p as Project).href ?? "#"}
-              className="group relative block border-t border-[color:var(--color-border)] last:border-b"
+              className="focus-ring group relative block border-t border-[color:var(--color-border)] last:border-b"
               data-cursor="view"
             >
               <div className="grid grid-cols-12 items-baseline gap-4 py-8 md:py-12">
@@ -59,7 +59,7 @@ export function Work() {
       <div className="mt-12 flex justify-end">
         <a
           href="#"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)]"
+          className="focus-ring inline-flex items-center gap-2 text-sm font-medium text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)]"
         >
           {site.work.seeAll}
         </a>

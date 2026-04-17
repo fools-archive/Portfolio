@@ -17,15 +17,15 @@ export function Services() {
         eyebrow={site.services.eyebrow}
         headline={site.services.headline}
       />
-      <ul className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-[rgba(26,24,21,0.24)] text-[#1A1815] md:grid-cols-2">
+      <ul className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-[color:var(--color-ink-border-strong)] text-[color:var(--color-ink)] md:grid-cols-2">
         {site.services.items.map((s, i) => {
           const Icon = iconMap[s.iconKey];
           return (
             <Reveal key={s.id} variant="up" delay={i * 0.05} as="li">
-              <article className="group relative flex h-full flex-col justify-between gap-10 bg-[#F2EDE4] p-10 transition-colors duration-500 hover:bg-[#E8DFCE] md:p-14">
+              <article className="group relative flex h-full flex-col justify-between gap-10 bg-[color:var(--color-paper)] p-10 transition-colors duration-500 hover:bg-[color:var(--color-paper-2)] md:p-14">
                 <div className="flex items-center justify-between">
                   <Icon size={36} strokeWidth={1.25} />
-                  <span className="text-xs uppercase tracking-[0.24em] text-[#6B6357]">
+                  <span className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-ink-muted)]">
                     0{i + 1}
                   </span>
                 </div>
@@ -33,7 +33,7 @@ export function Services() {
                   <h3 className="font-display text-3xl leading-tight md:text-4xl">
                     {s.title}
                   </h3>
-                  <p className="text-[#6B6357] max-w-[44ch] text-pretty">
+                  <p className="text-[color:var(--color-ink-muted)] max-w-[44ch] text-pretty">
                     {s.description}
                   </p>
                 </div>

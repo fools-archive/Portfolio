@@ -8,18 +8,19 @@ export function Marquee() {
       className="hairline-t hairline-b relative overflow-hidden py-8 md:py-10"
     >
       <div
-        className="flex w-max gap-12 whitespace-nowrap pl-12"
+        data-marquee
+        className="flex w-max items-center gap-12 whitespace-nowrap pl-12"
         style={{ animation: "marquee-x 40s linear infinite" }}
       >
         {items.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="font-display text-3xl md:text-5xl text-[color:var(--color-fg)]"
+            className="inline-flex items-center gap-6 font-display text-3xl md:text-5xl text-[color:var(--color-fg)]"
           >
             {item}
             <span
               aria-hidden
-              className="mx-6 inline-block h-2 w-2 translate-y-[-0.5em] rounded-full bg-[color:var(--color-accent)]"
+              className="inline-block h-2 w-2 rounded-full bg-[color:var(--color-accent)]"
             />
           </span>
         ))}

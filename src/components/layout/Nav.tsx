@@ -48,7 +48,7 @@ export function Nav() {
         <div className="container-x relative flex h-[var(--nav-h)] items-center justify-between">
           <a
             href="#top"
-            className="font-display text-2xl tracking-tight text-[color:var(--color-fg)] md:text-3xl"
+            className="focus-ring font-display text-2xl tracking-tight text-[color:var(--color-fg)] md:text-3xl"
             data-cursor="link"
           >
             {site.brand.mark}
@@ -59,7 +59,7 @@ export function Nav() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)] transition-colors duration-300 tracking-tight"
+                className="focus-ring text-sm font-medium text-[color:var(--color-fg)] hover:text-[color:var(--color-accent)] transition-colors duration-300 tracking-tight"
                 data-cursor="link"
               >
                 {item.label}
@@ -74,7 +74,7 @@ export function Nav() {
           </div>
 
           <button
-            className="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--color-border-strong)]"
+            className="focus-ring md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--color-border-strong)]"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >

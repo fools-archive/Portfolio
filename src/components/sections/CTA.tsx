@@ -44,7 +44,7 @@ export function CTA() {
           <a
             href={`mailto:${site.cta.email}`}
             data-cursor="link"
-            className="group inline-flex items-center gap-4 rounded-full bg-[color:var(--color-fg)] px-8 py-5 text-[color:var(--color-bg)] transition-colors duration-500 hover:bg-[color:var(--color-accent)]"
+            className="focus-ring group inline-flex items-center gap-4 rounded-full bg-[color:var(--color-fg)] px-8 py-5 text-[color:var(--color-bg)] transition-colors duration-500 hover:bg-[color:var(--color-accent)]"
           >
             <span className="font-medium">{site.cta.button}</span>
             <ArrowUpRight
@@ -57,7 +57,7 @@ export function CTA() {
           <div className="flex flex-wrap items-center gap-3 md:gap-4">
             <a
               href={`mailto:${site.cta.email}`}
-              className="font-display italic text-3xl text-[color:var(--color-fg-muted)] underline-offset-4 hover:text-[color:var(--color-fg)] hover:underline md:text-4xl"
+              className="focus-ring font-display italic text-3xl text-[color:var(--color-fg-muted)] underline-offset-4 hover:text-[color:var(--color-fg)] hover:underline md:text-4xl"
             >
               {site.cta.email}
             </a>
@@ -66,7 +66,7 @@ export function CTA() {
               onClick={handleCopy}
               data-cursor="link"
               aria-label={copied ? "Email copied" : "Copy email address"}
-              className="group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full border border-[color:var(--color-border-strong)] px-4 text-xs uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors duration-300 hover:border-[color:var(--color-fg)] hover:text-[color:var(--color-fg)]"
+              className="focus-ring group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full border border-[color:var(--color-border-strong)] px-4 text-xs uppercase tracking-[0.2em] text-[color:var(--color-fg-muted)] transition-colors duration-300 hover:border-[color:var(--color-fg)] hover:text-[color:var(--color-fg)]"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {copied ? (
