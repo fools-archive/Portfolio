@@ -43,29 +43,26 @@ export function About() {
       id="about"
       className="container-x section-y relative"
     >
-      <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+      <div className="grid gap-12 md:grid-cols-12 md:items-center md:gap-16">
         <div className="md:col-span-4">
           <Reveal variant="up">
             <Eyebrow>{site.about.eyebrow}</Eyebrow>
           </Reveal>
 
-          {/* Sticky wrapper keeps the image pinned while the text column scrolls */}
           <div className="mt-10 hidden md:block">
-            <div className="sticky top-[calc(var(--nav-h)+2.5rem)]">
-              <motion.div
-                style={{ opacity, y, scale }}
-                className="relative aspect-[3/4] overflow-hidden rounded-2xl will-change-transform"
-              >
-                <Image
-                  src="/portrait.png"
-                  alt={`Portrait of ${site.brand.name}`}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
-            </div>
+            <motion.div
+              style={{ opacity, y, scale }}
+              className="relative aspect-[3/4] overflow-hidden rounded-2xl will-change-transform"
+            >
+              <Image
+                src="/portrait.png"
+                alt={`Portrait of ${site.brand.name}`}
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover"
+                priority
+              />
+            </motion.div>
           </div>
         </div>
 
