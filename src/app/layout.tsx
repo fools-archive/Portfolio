@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { Cursor } from "@/components/motion/Cursor";
+import { Intro } from "@/components/motion/Intro";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { BackgroundScene } from "@/components/motion/BackgroundScene";
 import { site } from "@/content/site";
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
       <body className="bg-[color:var(--color-bg)] text-[color:var(--color-fg)] antialiased grain">
+        <Intro />
         <BackgroundScene />
         <SmoothScroll>
           <div className="relative z-10">
