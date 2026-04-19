@@ -193,6 +193,16 @@ export const site = {
     seeAll: "All Projects →",
     projects: [
       {
+        id: "dsa-visualizer",
+        title: "DSA Visualizer",
+        blurb:
+          "Built a deterministic algorithm execution engine using a step-event architecture, where algorithms emit ordered events and the UI is a pure reducer over state. Enabled reversible simulation (forward/backward/jump), checkpoint-based seeking, and cross-domain visualization (arrays, trees, graphs, grids, dynamic programming) via a domain-agnostic adapter system. Implemented multi-algorithm comparison, metrics derived from execution traces, and persistent shareable states.",
+        tech: ["React", "Vite", "JavaScript (ES modules)", "SVG", "CSS"],
+        href: "https://dsa-visualizer-nu-ten.vercel.app/",
+        year: "2024",
+        tag: "Frontend / Education",
+      },
+      {
         id: "ai-interviewer",
         title: "AI Interviewer",
         blurb:
@@ -218,15 +228,6 @@ export const site = {
         tech: ["Python", "Networking", "Machine Learning"],
         year: "2025",
         tag: "Cybersecurity / Systems",
-      },
-      {
-        id: "dsa-visualizer",
-        title: "DSA Visualizer",
-        blurb:
-          "Interactive tool that visually demonstrates data structures and algorithms to improve conceptual understanding.",
-        tech: ["React", "JavaScript"],
-        year: "2024",
-        tag: "Frontend / Education",
       },
     ] satisfies Project[],
   },

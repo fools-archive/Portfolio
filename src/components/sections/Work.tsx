@@ -18,6 +18,8 @@ export function Work() {
           <Reveal key={p.id} variant="up" delay={i * 0.04} as="li">
             <a
               href={(p as Project).href ?? "#"}
+              target={(p as Project).href ? "_blank" : undefined}
+              rel={(p as Project).href ? "noopener noreferrer" : undefined}
               className="focus-ring group relative block border-t border-[color:var(--color-border)] last:border-b"
               data-cursor="view"
             >
